@@ -5,8 +5,6 @@ import java.util.TreeMap;
 public class Element implements Comparable<Element> {
     private String name;
 
-    Map<Element, List<Partition>> elementPrefMap = new TreeMap<>();
-
     public Element(String name) {
         this.name = name;
     }
@@ -17,14 +15,6 @@ public class Element implements Comparable<Element> {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public Map<Element, List<Partition>> getElementPrefMap() {
-        return elementPrefMap;
-    }
-
-    public void setElementPrefMap(Map<Element, List<Partition>> elementPrefMap) {
-        this.elementPrefMap = elementPrefMap;
     }
 
     @Override

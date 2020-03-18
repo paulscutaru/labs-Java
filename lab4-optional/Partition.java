@@ -4,7 +4,6 @@ public class Partition implements Comparable<Partition>{
     private String name;
     private int capacity;
     private List<Element> elements = new ArrayList<Element>();
-    Map<Partition, List<Element>> partitionPrefMap = new TreeMap<>();
 
     public Partition(String name) {
         this.name = name;
