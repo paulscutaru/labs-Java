@@ -2,6 +2,7 @@ package com;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Catalog implements Serializable {
@@ -39,8 +40,7 @@ public class Catalog implements Serializable {
     }
 
     public void add(Document... doc) {
-        for(Document d: doc)
-            documents.add(d);
+        Collections.addAll(documents, doc);
     }
 
     public List<Document> getDocuments() {

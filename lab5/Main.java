@@ -5,7 +5,7 @@ import java.io.IOException;
 
 public class Main {
 
-    public static void main(String[] args) throws CatalogUtil.InvalidCatalogException, IOException {
+    public static void main(String[] args) throws InvalidCatalogException, IOException {
         Main app = new Main();
         app.testCreateSave();
         app.testLoadView();
@@ -25,7 +25,7 @@ public class Main {
         CatalogUtil.save(catalog);
     }
 
-    private void testLoadView() throws CatalogUtil.InvalidCatalogException {
+    private void testLoadView() throws InvalidCatalogException {
         Catalog catalog = CatalogUtil.load("C:/Users/Alex/Desktop/catalog.ser");
         Document doc = catalog.findById("photo1");
         Document doc2 = catalog.findById("text1");

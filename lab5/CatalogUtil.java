@@ -6,9 +6,9 @@ import java.net.URI;
 import java.net.URISyntaxException;
 
 public class CatalogUtil {
-    public static void save(Catalog catalog) throws IOException {
+    public static void save(Catalog catalog) {
         try (var out = new ObjectOutputStream(
-                new FileOutputStream(catalog.getPath()))){
+                new FileOutputStream(catalog.getPath()))) {
             out.writeObject(catalog);
         } catch (IOException e) {
             e.printStackTrace();
@@ -21,10 +21,16 @@ public class CatalogUtil {
             FileInputStream file = new FileInputStream(path);
             ObjectInputStream in = new ObjectInputStream(file);
             c = (Catalog) in.readObject();
-        } catch (IOException | ClassNotFoundException e) {
+            if (c == null || c.getDocuments().isEmpty()) {
+                throw new InvalidCatalogException(new Exception());
+            }
+        } catch (IOException e) {
+            System.out.println("Unexpected error reading the file!");
             e.printStackTrace();
+        } catch (ClassNotFoundException e1) {
+            System.out.println("Class not found!");
+            e1.printStackTrace();
         }
-
         return c;
     }
 
@@ -32,18 +38,17 @@ public class CatalogUtil {
         Desktop desktop = Desktop.getDesktop();
         File file = new File(doc.getLocation());
         try {
-            if(file.isFile())
+            if (file.isFile())
                 desktop.open(file);
             else
                 desktop.browse(new URI(doc.getLocation().toString()));
-        } catch (IOException | URISyntaxException e) {
+        } catch (IOException e) {
+            System.out.println("Unexpected error reading the file " + file);
             e.printStackTrace();
+        } catch (URISyntaxException e1) {
+            System.out.println("Given URI syntax is wrong!");
+            e1.printStackTrace();
         }
     }
 
-    public static class InvalidCatalogException extends Exception {
-        public InvalidCatalogException(Exception ex) {
-            super("Invalid catalog file.", ex);
-        }
-    }
 }
