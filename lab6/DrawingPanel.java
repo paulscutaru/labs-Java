@@ -54,6 +54,8 @@ public class DrawingPanel extends JPanel {
         Color color = Color.BLACK;
         if (frame.configPanel.colorCombo.getSelectedItem() == "Random")
             color = new Color(random.nextInt(255), random.nextInt(100), random.nextInt(200));
+        else if(frame.configPanel.colorCombo.getSelectedItem() == "Black")
+            color = Color.BLACK;
         graphics.setColor(color);
         if (shape.equals("RegularPolygon"))
             graphics.fill(new RegularPolygon(x, y, radius, sides));
