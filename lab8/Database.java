@@ -14,7 +14,9 @@ public class Database {
     }
 
     public Connection connent() throws Exception {
-        Class.forName("oracle.jdbc.driver.OracleDriver");
+        DriverManager.registerDriver(new oracle.jdbc.driver.OracleDriver());
+        Class.forName("oracle.jdbc.driver.OracleDriver").newInstance();
+        System.setProperty("jdbc.drivers", "com.mysql.jdbc.Driver");
 
         return DriverManager.getConnection(
                 "jdbc:oracle:thin:@localhost:1521:xe", "student", "STUDENT");
