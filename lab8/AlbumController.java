@@ -2,6 +2,7 @@ package com;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 
 public class AlbumController {
@@ -11,13 +12,13 @@ public class AlbumController {
         this.con = con;
     }
 
-    public void create(String name, int artistId, int releaseYear) throws Exception {
+    public void create(String name, int artistId, int releaseYear) throws SQLException {
         String sql = "insert into albums(id,name,artist_id,release_year) values(1,'" + name + "'," + artistId + "," + releaseYear + ")";
         Statement stmt = con.createStatement();
         stmt.execute(sql);
     }
 
-    public void findByArtist(int artistId) throws Exception {
+    public void findByArtist(int artistId) throws SQLException {
         ResultSet rs;
         String sql = "select * from albums where artist_id=" + artistId;
         Statement stmt = con.createStatement();
