@@ -15,9 +15,7 @@ public class Database {
     }
 
     public Connection connent() throws SQLException, ClassNotFoundException, IllegalAccessException, InstantiationException {
-        DriverManager.registerDriver(new oracle.jdbc.driver.OracleDriver());
-        Class.forName("oracle.jdbc.driver.OracleDriver").newInstance();
-        System.setProperty("jdbc.drivers", "com.mysql.jdbc.Driver");
+        Class.forName("oracle.jdbc.driver.OracleDriver");
 
         Connection con = null;
         try {
@@ -25,9 +23,10 @@ public class Database {
                     "jdbc:oracle:thin:@localhost:1521:xe", "dba", "sql");
         } catch (SQLException e) {
             System.err.println("Cannot connect to DB: " + e);
-        } finally {
-            if (con != null) con.close();
         }
         return con;
+    }
+    public void disconnect(Connection con) throws SQLException {
+        con.close();
     }
 }
