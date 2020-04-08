@@ -13,6 +13,7 @@ public class ArtistController {
         String sql = "insert into artists(id,name,country) values(1,'" + name + "','" + country + "')";
         Statement stmt = con.createStatement();
         stmt.execute(sql);
+        stmt.close();
     }
 
     public void findByName(String name) throws SQLException {
@@ -23,5 +24,6 @@ public class ArtistController {
         while (rs.next()) {
             System.out.println(rs.getString(1) + " " + rs.getString(2) + " " + rs.getString(3));
         }
+        stmt.close();
     }
 }

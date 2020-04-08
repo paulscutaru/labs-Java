@@ -43,6 +43,7 @@ public class Main {
         albumController.create("Manele rock",1,2020);
         albumController.findByArtist(1);
 
+        stmt.close();
         database.disconnect(con);
 
     }

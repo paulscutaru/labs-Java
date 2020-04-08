@@ -16,6 +16,7 @@ public class AlbumController {
         String sql = "insert into albums(id,name,artist_id,release_year) values(1,'" + name + "'," + artistId + "," + releaseYear + ")";
         Statement stmt = con.createStatement();
         stmt.execute(sql);
+        stmt.close();
     }
 
     public void findByArtist(int artistId) throws SQLException {
@@ -27,5 +28,6 @@ public class AlbumController {
             System.out.println(rs.getString(1) + " " + rs.getString(2) + " "
                      + rs.getString(4));
         }
+        stmt.close();
     }
 }
