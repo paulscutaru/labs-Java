@@ -21,7 +21,13 @@ public class ClientThread extends Thread {
                 String request = in.readLine();
                 // Send the response to the output stream: server → client
                 PrintWriter out = new PrintWriter(socket.getOutputStream());
-                String response = "Hello " + request + "!";
+                if(request.equals("stop")){
+                    String response = "Server stopped";
+                    out.println(response);
+                    out.flush();
+                    break;
+                }
+                String response = "Server received the request!";
                 out.println(response);
                 out.flush();
             }

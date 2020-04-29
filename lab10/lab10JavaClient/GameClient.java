@@ -31,6 +31,8 @@ public class GameClient {
                         new InputStreamReader(socket.getInputStream()));
                 // Send a request to the server
                 out.println(request);
+                if (request.equals("exit"))
+                    break;
                 // Wait the response from the server ("Hello World!")
                 String response = in.readLine();
                 System.out.println(response);
